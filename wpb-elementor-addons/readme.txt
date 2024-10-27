@@ -5,7 +5,7 @@ Contributors: wpbean, imranwpb
 Tags: elementor, elementor addons, elementor widget, addons, elementor elements
 Requires at least: 5.0
 Tested up to: 6.6.2
-Stable tag: 1.3
+Stable tag: 1.4
 Requires PHP: 7.3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -96,6 +96,9 @@ We test this plugin with so many free and premium themes. It should work with an
 
 
 == Changelog ==
+
+= Version 1.4 =
+* Discount page added. 
 
 = Version 1.3 =
 * Fixed lineicon CSS file slug issue. 

@@ -3,7 +3,7 @@
  * Plugin Name:       WPB Elementor Addons
  * Plugin URI:        https://wpbean.com/
  * Description:       Highly customizable addons for Elementor page builder.
- * Version:           1.3
+ * Version:           1.4
  * Author:            wpbean
  * Author URI:        https://wpbean.com
  * Text Domain:       wpb-elementor-addons
@@ -115,6 +115,11 @@ class WPB_Elementor_Addons {
 		require_once __DIR__ . '/admin/admin-page.php';
 		require_once __DIR__ . '/admin/class.settings-api.php';
 		require_once __DIR__ . '/admin/plugin-settings.php';
+
+		if( is_admin() ){
+			require_once __DIR__ . '/inc/DiscountPage/DiscountPage.php';
+			new WPBean_Elementor_Addons_DiscountPage();
+		}
 	}
 
 	/**
@@ -158,7 +163,9 @@ class WPB_Elementor_Addons {
 		}
 
 		$user_id        = get_current_user_id();
-		$premium_addons = wpb_ea_premium_addons();
+		//$premium_addons = wpb_ea_premium_addons();
+
+		$premium_addons = '';
 
 		if ( ! empty( $premium_addons ) ) {
 			foreach ( $premium_addons as $key => $premium_addon ) {
