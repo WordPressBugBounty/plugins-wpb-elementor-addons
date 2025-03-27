@@ -3,8 +3,8 @@
  * Plugin Name:       WPB Elementor Addons
  * Plugin URI:        https://wpbean.com/
  * Description:       Highly customizable addons for Elementor page builder.
- * Version:           1.4
- * Author:            wpbean
+ * Version:           1.5
+ * Author:            WPBean
  * Author URI:        https://wpbean.com
  * Text Domain:       wpb-elementor-addons
  * Domain Path:       /languages
@@ -68,7 +68,7 @@ class WPB_Elementor_Addons {
 	private function __construct() {
 		$this->define_constants();
 
-		if ( defined( 'ELEMENTOR_VERSION' ) ) {
+		if ( did_action( 'elementor/loaded' ) ) {
 			add_action( 'plugins_loaded', array( $this, 'plugin_init' ) );
 		} else {
 			add_action( 'admin_notices', array( $this, 'elementor_required_error' ) );
@@ -82,7 +82,7 @@ class WPB_Elementor_Addons {
 	 * Define plugin Constants.
 	 */
 	public function define_constants() {
-		define( 'WPB_EA_VERSION', '1.0.9' );
+		define( 'WPB_EA_VERSION', '1.5' );
 		define( 'WPB_EA_URL', plugins_url( '/', __FILE__ ) );
 		define( 'WPB_EA_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'WPB_EA_PREFIX', 'wpb_ea_' );
@@ -116,10 +116,10 @@ class WPB_Elementor_Addons {
 		require_once __DIR__ . '/admin/class.settings-api.php';
 		require_once __DIR__ . '/admin/plugin-settings.php';
 
-		if( is_admin() ){
-			require_once __DIR__ . '/inc/DiscountPage/DiscountPage.php';
-			new WPBean_Elementor_Addons_DiscountPage();
-		}
+		// if( is_admin() ){
+		// 	require_once __DIR__ . '/inc/DiscountPage/DiscountPage.php';
+		// 	new WPBean_Elementor_Addons_DiscountPage();
+		// }
 	}
 
 	/**

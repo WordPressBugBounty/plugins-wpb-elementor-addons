@@ -4,8 +4,8 @@ Plugin URI: https://wpbean.com/
 Contributors: wpbean, imranwpb
 Tags: elementor, elementor addons, elementor widget, addons, elementor elements
 Requires at least: 5.0
-Tested up to: 6.6.2
-Stable tag: 1.4
+Tested up to: 6.7.2
+Stable tag: 1.5
 Requires PHP: 7.3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,7 +16,7 @@ Elementor Addon Elements like News Ticker, Content Timeline, Gallery, Video Popu
 
 <a href="https://wordpress.org/plugins/elementor/" rel="nofollow">Elementor</a> is the number one page builder for WordPress currently available now in the market. It has a super easy user interface, anyone can design complex web pages without knowing any code.
 
-WPB Elementor Addons can take your site to the next level by adding a number of premium quality addons with a huge number of customization options. It's one of the Best Elementor Addons pack. All the addons are a premium quality modern design.
+WPB Elementor Addons can add a variety of high-quality addons with a vast array of customization options to help you take your website to the next level. It is among the top Elementor add-on packs. All of the accessories have a high-end, modern look.
 
 You can build any professional websites with this addon pack. We have elements for any type of business, corporate or personal websites. The team, services, pricing table addon allow you to integrate it for any type of business websites. 
 
@@ -81,7 +81,7 @@ We test this plugin with so many free and premium themes. It should work with an
 1. WPB Elementor Addons.
 2. CounterUp.
 3. Post Slider.
-4. Filterable Image Gallery​.
+4. Filterable Image Gallery.
 5. Pricing Table.
 6. Testimonial Slider.
 7. Team Members Slider.
@@ -96,6 +96,11 @@ We test this plugin with so many free and premium themes. It should work with an
 
 
 == Changelog ==
+
+= Version 1.5 =
+* Elementor installed check condition changed. 
+* Discount page removed.
+
 
 = Version 1.4 =
 * Discount page added. 
