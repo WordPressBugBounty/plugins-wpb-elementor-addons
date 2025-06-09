@@ -3,7 +3,7 @@
  * Plugin Name:       WPB Elementor Addons
  * Plugin URI:        https://wpbean.com/
  * Description:       Highly customizable addons for Elementor page builder.
- * Version:           1.5
+ * Version:           1.6
  * Author:            WPBean
  * Author URI:        https://wpbean.com
  * Text Domain:       wpb-elementor-addons
@@ -82,7 +82,7 @@ class WPB_Elementor_Addons {
 	 * Define plugin Constants.
 	 */
 	public function define_constants() {
-		define( 'WPB_EA_VERSION', '1.5' );
+		define( 'WPB_EA_VERSION', '1.6' );
 		define( 'WPB_EA_URL', plugins_url( '/', __FILE__ ) );
 		define( 'WPB_EA_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'WPB_EA_PREFIX', 'wpb_ea_' );
@@ -116,10 +116,12 @@ class WPB_Elementor_Addons {
 		require_once __DIR__ . '/admin/class.settings-api.php';
 		require_once __DIR__ . '/admin/plugin-settings.php';
 
-		// if( is_admin() ){
-		// 	require_once __DIR__ . '/inc/DiscountPage/DiscountPage.php';
-		// 	new WPBean_Elementor_Addons_DiscountPage();
-		// }
+		if( is_admin() ){
+			if(!class_exists('WpBean_AccordionMenu_AvailableHire')){
+				include_once __DIR__ . '/inc/AvailableHire/AvailableHire.php';
+			}
+			new WpBean_AccordionMenu_AvailableHire();
+		}
 	}
 
 	/**

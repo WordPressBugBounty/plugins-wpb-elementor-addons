@@ -4,13 +4,13 @@ Plugin URI: https://wpbean.com/
 Contributors: wpbean, imranwpb
 Tags: elementor, elementor addons, elementor widget, addons, elementor elements
 Requires at least: 5.0
-Tested up to: 6.7.2
-Stable tag: 1.5
+Tested up to: 6.8.1
+Stable tag: 1.6
 Requires PHP: 7.3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Elementor Addon Elements like News Ticker, Content Timeline, Gallery, Video Popup, Team Members, Pricing Table, and Post Grid with huge styling option
+WPB Elementor Addons has News Ticker, Content Timeline, Gallery, Video Popup, Team Members, Pricing Table, and Post Grid with huge styling option
 
 == Description ==
 
@@ -24,6 +24,11 @@ This addons pack works with any standard free or premium WordPress themes. No ma
 
 
 >[DEMO](https://elementorkit.wpbean.com/)  |  [Support](https://wpbean.freshdesk.com/) |  [Documentation](http://docs.wpbean.com/docs/wpb-ea-elementor-addons/) |  [Video Tutorials](https://www.youtube.com/playlist?list=PLHcSqTwq3hc1hvQbzl-1_I1xTd8OltaDI)
+
+### 👋 Need expert WordPress & WooCommerce development help?
+I’m currently available for hire — WordPress and WooCommerce development, custom features, bug fixing, speed optimization, performance tuning, SEO improvements, and more.
+With over 10 years of experience building high-quality WordPress solutions, I can help you take your website to the next level. 
+[__Contact me here →__](https://wpbean.com/web-development-services/?utm_source=WordPress&utm_medium=desc-link&utm_campaign=available-for-hire&utm_content=WPB+Elementor+Addons)
 
 
 ### Available Addons
@@ -97,10 +102,12 @@ We test this plugin with so many free and premium themes. It should work with an
 
 == Changelog ==
 
+= Version 1.6 =
+* Code improvement.
+
 = Version 1.5 =
 * Elementor installed check condition changed. 
 * Discount page removed.
-
 
 = Version 1.4 =
 * Discount page added. 
