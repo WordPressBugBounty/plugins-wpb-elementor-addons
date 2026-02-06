@@ -1,25 +1,29 @@
 <?php
+
 /**
  * Plugin Name:       WPB Elementor Addons
  * Plugin URI:        https://wpbean.com/
  * Description:       Highly customizable addons for Elementor page builder.
- * Version:           1.6
+ * Version:           1.7
  * Author:            WPBean
  * Author URI:        https://wpbean.com
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wpb-elementor-addons
  * Domain Path:       /languages
  *
  * @package WPB Elementor Addons
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit;
 }
 
 /**
  * Plugin main class
  */
-class WPB_Elementor_Addons {
+class WPB_Elementor_Addons
+{
 
 	/**
 	 * The plugin path
@@ -55,8 +59,9 @@ class WPB_Elementor_Addons {
 	 *
 	 * @return Plugin An instance of the class.
 	 */
-	public static function instance() {
-		if ( is_null( self::$instance ) ) {
+	public static function instance()
+	{
+		if (is_null(self::$instance)) {
 			self::$instance = new self();
 		}
 		return self::$instance;
@@ -65,29 +70,31 @@ class WPB_Elementor_Addons {
 	/**
 	 * Class Constructor.
 	 */
-	private function __construct() {
+	private function __construct()
+	{
 		$this->define_constants();
 
-		if ( did_action( 'elementor/loaded' ) ) {
-			add_action( 'plugins_loaded', array( $this, 'plugin_init' ) );
+		if (did_action('elementor/loaded')) {
+			add_action('plugins_loaded', array($this, 'plugin_init'));
 		} else {
-			add_action( 'admin_notices', array( $this, 'elementor_required_error' ) );
+			add_action('admin_notices', array($this, 'elementor_required_error'));
 		}
 
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_actions_links' ) );
-		register_deactivation_hook( plugin_basename( __FILE__ ), array( $this, 'register_deactivation' ) );
+		add_filter('plugin_action_links_' . plugin_basename(__FILE__), array($this, 'plugin_actions_links'));
+		register_deactivation_hook(plugin_basename(__FILE__), array($this, 'register_deactivation'));
 	}
 
 	/**
 	 * Define plugin Constants.
 	 */
-	public function define_constants() {
-		define( 'WPB_EA_VERSION', '1.6' );
-		define( 'WPB_EA_URL', plugins_url( '/', __FILE__ ) );
-		define( 'WPB_EA_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
-		define( 'WPB_EA_PREFIX', 'wpb_ea_' );
-		define( 'WPB_EA_THEME_DIR_PATH', 'wpb-elementor-addons/' );
-		define( 'WPB_EA_TEMPLATE_PATH', WPB_EA_PATH . 'templates/' );
+	public function define_constants()
+	{
+		define('WPB_EA_VERSION', '1.7');
+		define('WPB_EA_URL', plugins_url('/', __FILE__));
+		define('WPB_EA_PATH', trailingslashit(plugin_dir_path(__FILE__)));
+		define('WPB_EA_PREFIX', 'wpb_ea_');
+		define('WPB_EA_THEME_DIR_PATH', 'wpb-elementor-addons/');
+		define('WPB_EA_TEMPLATE_PATH', WPB_EA_PATH . 'templates/');
 	}
 
 	/**
@@ -95,12 +102,12 @@ class WPB_Elementor_Addons {
 	 *
 	 * @return void
 	 */
-	public function plugin_init() {
+	public function plugin_init()
+	{
 		$this->file_includes();
-		add_action( 'init', array( $this, 'localization_setup' ) );
-		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
-		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		add_action( 'activated_plugin', array( $this, 'activation_redirect' ) );
+		add_action('admin_notices', array($this, 'admin_notices'));
+		add_action('admin_init', array($this, 'admin_init'));
+		add_action('activated_plugin', array($this, 'activation_redirect'));
 	}
 
 	/**
@@ -108,50 +115,37 @@ class WPB_Elementor_Addons {
 	 *
 	 * @return void
 	 */
-	public function file_includes() {
+	public function file_includes()
+	{
 		require_once __DIR__ . '/inc/helper.php';
 		require_once __DIR__ . '/inc/wpb_functions.php';
 		require_once __DIR__ . '/inc/wpb_scripts.php';
 		require_once __DIR__ . '/admin/admin-page.php';
 		require_once __DIR__ . '/admin/class.settings-api.php';
 		require_once __DIR__ . '/admin/plugin-settings.php';
-
-		if( is_admin() ){
-			if(!class_exists('WpBean_AccordionMenu_AvailableHire')){
-				include_once __DIR__ . '/inc/AvailableHire/AvailableHire.php';
-			}
-			new WpBean_AccordionMenu_AvailableHire();
-		}
 	}
 
 	/**
 	 * Plugin action links
 	 */
-	public function plugin_actions_links( $links ) {
-		if ( is_admin() ) {
-			$links[] = '<a href="' . esc_url( admin_url( 'admin.php?page=wpb_ea_settings' ) ) . '">' . esc_html__( 'Settings', 'wpb-elementor-addons' ) . '</a>';
-			$links[] = '<a href="https://wpbean.com/support/" target="_blank">' . esc_html__( 'Support', 'wpb-elementor-addons' ) . '</a>';
-			$links[] = '<a href="http://docs.wpbean.com/docs/wpb-ea-elementor-addons/" target="_blank">' . esc_html__( 'Documentation', 'wpb-elementor-addons' ) . '</a>';
-			$links[] = '<a href="https://wpbean.com/elementor-addons/" target="_blank" class="elementor-plugins-gopro">' . esc_html__( 'Pro Addons', 'wpb-elementor-addons' ) . '</a>';
+	public function plugin_actions_links($links)
+	{
+		if (is_admin()) {
+			$links[] = '<a href="' . esc_url(admin_url('admin.php?page=wpb_ea_settings')) . '">' . esc_html__('Settings', 'wpb-elementor-addons') . '</a>';
+			$links[] = '<a href="https://wpbean.com/support/" target="_blank">' . esc_html__('Support', 'wpb-elementor-addons') . '</a>';
+			$links[] = '<a href="http://docs.wpbean.com/docs/wpb-ea-elementor-addons/" target="_blank">' . esc_html__('Documentation', 'wpb-elementor-addons') . '</a>';
+			$links[] = '<a href="https://wpbean.com/elementor-addons/" target="_blank" class="elementor-plugins-gopro">' . esc_html__('Pro Addons', 'wpb-elementor-addons') . '</a>';
 		}
 		return $links;
 	}
 
 	/**
-	 * Initialize plugin for localization
-	 *
-	 * @uses load_plugin_textdomain()
-	 */
-	public function localization_setup() {
-		load_plugin_textdomain( 'wpb-elementor-addons', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-	}
-
-	/**
 	 * Activation redirect
 	 */
-	public function activation_redirect( $plugin ) {
-		if ( $plugin == plugin_basename( __FILE__ ) ) {
-			wp_safe_redirect( esc_url( admin_url( 'admin.php?page=wpb-ea-about' ) ) );
+	public function activation_redirect($plugin)
+	{
+		if ($plugin == plugin_basename(__FILE__)) {
+			wp_safe_redirect(esc_url(admin_url('admin.php?page=wpb-ea-about')));
 			exit;
 		}
 	}
@@ -159,35 +153,34 @@ class WPB_Elementor_Addons {
 	/**
 	 * Admin notices
 	 */
-	public function admin_notices() {
-		if ( ! is_plugin_active( 'elementor/elementor.php' ) ) {
-			printf( '<div class="notice notice-warning is-dismissible"><p>%s</p></div>', esc_html__( 'This plugin required Elementor Page Builder installed to function.', 'wpb-elementor-addons' ) );
+	public function admin_notices()
+	{
+		if (! is_plugin_active('elementor/elementor.php')) {
+			printf('<div class="notice notice-warning is-dismissible"><p>%s</p></div>', esc_html__('This plugin required Elementor Page Builder installed to function.', 'wpb-elementor-addons'));
 		}
 
 		$user_id        = get_current_user_id();
-		//$premium_addons = wpb_ea_premium_addons();
+		$premium_addons = wpb_ea_premium_addons();
 
-		$premium_addons = '';
-
-		if ( ! empty( $premium_addons ) ) {
-			foreach ( $premium_addons as $key => $premium_addon ) {
-				if ( ! get_user_meta( $user_id, $key . '-discount-dismissed' ) ) {
+		if (! empty($premium_addons)) {
+			foreach ($premium_addons as $key => $premium_addon) {
+				if (! get_user_meta($user_id, $key . '-discount-dismissed')) {
 					printf(
 						'<div class="wpb-ea-discount-notice updated" style="padding: 30px 20px;border-left-color: #27ae60;border-left-width: 5px;margin-top: 20px;"><p style="font-size: 18px;line-height: 32px">%s <a target="_blank" href="%s">%s</a>! %s <b>%s</b></p><a href="%s">%s</a></div>',
-						esc_html__( 'Get a 10% exclusive discount on the', 'wpb-elementor-addons' ),
-						esc_url( 'https://wpbean.com/downloads/' . $key ),
-						esc_html( $premium_addon ),
-						esc_html__( 'Use discount code - ', 'wpb-elementor-addons' ),
-						'10PERCENTOFF',
+						esc_html__('Get a 10% exclusive discount on the', 'wpb-elementor-addons'),
+						esc_url('https://wpbean.com/downloads/' . $key),
+						esc_html($premium_addon),
+						esc_html__('Use discount code - ', 'wpb-elementor-addons'),
+						'NewCustomer',
 						esc_url(
 							add_query_arg(
 								array(
 									$key . '-discount-dismissed' => 'true',
-									'_wpnonce' => wp_create_nonce( 'wpb-ea-discount-dismissed-' . $key ),
+									'_wpnonce' => wp_create_nonce('wpb-ea-discount-dismissed-' . $key),
 								)
 							)
 						),
-						esc_html__( 'Dismiss', 'wpb-elementor-addons' )
+						esc_html__('Dismiss', 'wpb-elementor-addons')
 					);
 				}
 			}
@@ -197,29 +190,31 @@ class WPB_Elementor_Addons {
 	/**
 	 * elementor_required_error
 	 */
-	public function elementor_required_error() {
+	public function elementor_required_error()
+	{
 		$class   = 'notice notice-warning';
-		$message = esc_html__( 'WPB Elementor Addons requires the Elementor plugin.', 'wpb-elementor-addons' );
+		$message = esc_html__('WPB Elementor Addons requires the Elementor plugin.', 'wpb-elementor-addons');
 
-		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
+		printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
 	}
 
 	/**
 	 * Admin Init
 	 */
-	public function admin_init() {
+	public function admin_init()
+	{
 		$user_id = get_current_user_id();
 
 		$premium_addons = wpb_ea_premium_addons();
 
-		if ( ! empty( $premium_addons ) ) {
-			foreach ( $premium_addons as $key => $premium_addon ) {
-				if ( isset( $_GET[ $key . '-discount-dismissed' ] ) ) {
+		if (! empty($premium_addons)) {
+			foreach ($premium_addons as $key => $premium_addon) {
+				if (isset($_GET[$key . '-discount-dismissed'])) {
 					// run a quick security check.
-					if ( ! wp_verify_nonce( wp_unslash( $_GET['_wpnonce'] ), 'wpb-ea-discount-dismissed-' . $key ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+					if (isset($_GET['_wpnonce']) && ! wp_verify_nonce(wp_unslash($_GET['_wpnonce']), 'wpb-ea-discount-dismissed-' . $key)) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 						return;
 					}
-					add_user_meta( $user_id, $key . '-discount-dismissed', 'true', true );
+					add_user_meta($user_id, $key . '-discount-dismissed', 'true', true);
 				}
 			}
 		}
@@ -228,15 +223,16 @@ class WPB_Elementor_Addons {
 	/**
 	 * Plugin Deactivation
 	 */
-	public function register_deactivation() {
+	public function register_deactivation()
+	{
 		$user_id = get_current_user_id();
 
 		$premium_addons = wpb_ea_premium_addons();
 
-		if ( ! empty( $premium_addons ) ) {
-			foreach ( $premium_addons as $key => $premium_addon ) {
-				if ( get_user_meta( $user_id, $key . '-discount-dismissed' ) ) {
-					delete_user_meta( $user_id, $key . '-discount-dismissed' );
+		if (! empty($premium_addons)) {
+			foreach ($premium_addons as $key => $premium_addon) {
+				if (get_user_meta($user_id, $key . '-discount-dismissed')) {
+					delete_user_meta($user_id, $key . '-discount-dismissed');
 				}
 			}
 		}

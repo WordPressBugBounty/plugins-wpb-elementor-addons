@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Plugin: WPB Elementor Addons
  *
  * Author: WpBean
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
@@ -17,12 +18,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param string $default_value Default value to return if the option does not exist.
  * @return mixed Value of the option. A value of any type may be returned, including scalar (string, boolean, float, integer), null, array, object.
  */
-function wpb_ea_get_option( $option, $section, $default_value = '' ) {
+function wpb_ea_get_option($option, $section, $default_value = '')
+{
 
-	$options = get_option( $section );
+	$options = get_option($section);
 
-	if ( isset( $options[ $option ] ) ) {
-		return $options[ $option ];
+	if (isset($options[$option])) {
+		return $options[$option];
 	}
 
 	return $default_value;
@@ -31,15 +33,17 @@ function wpb_ea_get_option( $option, $section, $default_value = '' ) {
 /**
  * Premium Addons for Admin discount notice.
  */
-if ( ! function_exists( 'wpb_ea_premium_addons' ) ) {
+if (! function_exists('wpb_ea_premium_addons')) {
 
-	function wpb_ea_premium_addons() {
+	function wpb_ea_premium_addons()
+	{
 
 		$addons = array(
 			'wpb-elementor-news-ticker-pro' => 'WPB Elementor News Ticker PRO',
+			'wpb-elementor-timeline-pro' => 'WPB Elementor Timeline PRO',
 		);
 
-		return apply_filters( 'wpb_ea_premium_addons', $addons );
+		return apply_filters('wpb_ea_premium_addons', $addons);
 	}
 }
 
@@ -47,22 +51,23 @@ if ( ! function_exists( 'wpb_ea_premium_addons' ) ) {
  * Premium Addons for settings
  */
 
-add_filter( 'wpb_ea_required_addons', 'wpb_ea_pro_required_addon' );
+add_filter('wpb_ea_required_addons', 'wpb_ea_pro_required_addon');
 
-function wpb_ea_pro_required_addon( $addons ) {
+function wpb_ea_pro_required_addon($addons)
+{
 
 	$pro_addons = apply_filters(
 		'wpb_ea_pro_required_addon',
 		array(
 			array(
 				'name'  => WPB_EA_PREFIX . 'pro_addons',
-				'label' => esc_html__( 'Pro Elements', 'wpb-elementor-addons' ),
+				'label' => esc_html__('Pro Elements', 'wpb-elementor-addons'),
 				'type'  => 'section_title',
 			),
 		)
 	);
 
-	$addons = array_merge( $addons, $pro_addons );
+	$addons = array_merge($addons, $pro_addons);
 
 	return $addons;
 }
@@ -71,15 +76,16 @@ function wpb_ea_pro_required_addon( $addons ) {
  * Premium Addons Link for settings
  */
 
-add_filter( 'wpb_ea_pro_required_addon', 'wpb_nt_pro_addons_link' );
+add_filter('wpb_ea_pro_required_addon', 'wpb_nt_pro_addons_link');
 
-function wpb_nt_pro_addons_link( $addons ) {
+function wpb_nt_pro_addons_link($addons)
+{
 
-	if ( ! defined( 'WPB_NT_VERSION' ) ) {
+	if (! defined('WPB_NT_VERSION')) {
 		$addons[] = array(
 			'name'    => WPB_EA_PREFIX . 'news_ticker_pro_link',
-			'label'   => esc_html__( 'News Ticker PRO', 'wpb-elementor-addons' ),
-			'desc'    => esc_html__( 'Scrolling dynamic data like posts, products, categories even a navigation menu.', 'wpb-elementor-addons' ),
+			'label'   => esc_html__('News Ticker PRO', 'wpb-elementor-addons'),
+			'desc'    => esc_html__('Scrolling dynamic data like posts, products, categories even a navigation menu.', 'wpb-elementor-addons'),
 			'icon'    => 'eicon-post-navigation',
 			'type'    => 'premium',
 			'options' => 'https://wpbean.com/downloads/wpb-elementor-news-ticker-pro/',
@@ -100,9 +106,10 @@ function wpb_nt_pro_addons_link( $addons ) {
  * @return void
  */
 
-if ( ! function_exists( 'wpb_ea_get_template' ) ) {
+if (! function_exists('wpb_ea_get_template')) {
 
-	function wpb_ea_get_template( $template_name ) {
+	function wpb_ea_get_template($template_name)
+	{
 
 		$template = locate_template(
 			array(
@@ -111,11 +118,11 @@ if ( ! function_exists( 'wpb_ea_get_template' ) ) {
 			)
 		);
 
-		if ( ! $template ) {
+		if (! $template) {
 			$template = WPB_EA_TEMPLATE_PATH . $template_name;
 		}
 
-		if ( file_exists( $template ) ) {
+		if (file_exists($template)) {
 			require_once $template;
 		}
 	}
@@ -125,32 +132,34 @@ if ( ! function_exists( 'wpb_ea_get_template' ) ) {
 /**
  * PHP implode with key and value ( Owl carousel data attr )
  */
-if ( ! function_exists( 'wpb_ea_owl_carousel_data_attr_implode' ) ) {
+if (! function_exists('wpb_ea_owl_carousel_data_attr_implode')) {
 
-	function wpb_ea_owl_carousel_data_attr_implode( $attrs ) {
+	function wpb_ea_owl_carousel_data_attr_implode($attrs)
+	{
 
-		foreach ( $attrs as $key => $value ) {
+		foreach ($attrs as $key => $value) {
 
-			if ( isset( $value ) && $value != '' ) {
-				$output[] = $key . '="' . esc_attr( $value ) . '"';
+			if (isset($value) && $value != '') {
+				$output[] = $key . '="' . esc_attr($value) . '"';
 			}
 		}
 
-		return implode( ' ', $output );
+		return implode(' ', $output);
 	}
 }
 
 /**
  * get all types of posts
  */
-function wpb_ea_get_all_post_type_options() {
+function wpb_ea_get_all_post_type_options()
+{
 
-	$post_types = get_post_types( array( 'public' => true ), 'objects' );
+	$post_types = get_post_types(array('public' => true), 'objects');
 
 	$options = array();
 
-	foreach ( $post_types as $post_type ) {
-		$options[ $post_type->name ] = $post_type->label;
+	foreach ($post_types as $post_type) {
+		$options[$post_type->name] = $post_type->label;
 	}
 
 	return $options;
@@ -159,20 +168,21 @@ function wpb_ea_get_all_post_type_options() {
 /**
  * get all taxonomy
  */
-function wpb_ea_get_all_taxonomy_options() {
+function wpb_ea_get_all_taxonomy_options()
+{
 
-	$taxonomies = get_taxonomies( array( 'public' => true ), 'objects' );
+	$taxonomies = get_taxonomies(array('public' => true), 'objects');
 
 	$options = array();
 
-	foreach ( $taxonomies as $taxonomy ) {
-		$options[ $taxonomy->name ] = $taxonomy->label;
+	foreach ($taxonomies as $taxonomy) {
+		$options[$taxonomy->name] = $taxonomy->label;
 	}
 
 	return $options;
 }
 
-if ( ! function_exists( 'wpb_ea_enable_addons' ) ) {
+if (! function_exists('wpb_ea_enable_addons')) {
 
 	/**
 	 * Check addon is enable or not.
@@ -181,10 +191,11 @@ if ( ! function_exists( 'wpb_ea_enable_addons' ) ) {
 	 * @param string $default_value The default vaule.
 	 * @return void
 	 */
-	function wpb_ea_enable_addons( $addon = '', $default_value = '' ) {
-		if ( $addon ) {
-			$addons_status = wpb_ea_get_option( $addon, 'wpb_ea_addons', $default_value );
-			if ( $addons_status === 'on' ) {
+	function wpb_ea_enable_addons($addon = '', $default_value = '')
+	{
+		if ($addon) {
+			$addons_status = wpb_ea_get_option($addon, 'wpb_ea_addons', $default_value);
+			if ($addons_status === 'on') {
 				return true;
 			} else {
 				return false;
@@ -200,16 +211,17 @@ if ( ! function_exists( 'wpb_ea_enable_addons' ) ) {
  * Add a New Elementor Category
  */
 
-add_action( 'elementor/elements/categories_registered', 'wpb_ea_add_elementor_category' );
+add_action('elementor/elements/categories_registered', 'wpb_ea_add_elementor_category');
 
-if ( ! function_exists( 'wpb_ea_add_elementor_category' ) ) {
+if (! function_exists('wpb_ea_add_elementor_category')) {
 
-	function wpb_ea_add_elementor_category( $elements_manager ) {
+	function wpb_ea_add_elementor_category($elements_manager)
+	{
 
 		$elements_manager->add_category(
 			'wpb_ea_widgets',
 			array(
-				'title' => esc_html__( 'WPB ADDONS', 'wpb-elementor-addons' ),
+				'title' => esc_html__('WPB ADDONS', 'wpb-elementor-addons'),
 			)
 		);
 	}
@@ -220,85 +232,86 @@ if ( ! function_exists( 'wpb_ea_add_elementor_category' ) ) {
  * Add Elementor widgets
  */
 
-add_action( 'elementor/widgets/register', 'wpb_ea_add_elementor_widgets' );
+add_action('elementor/widgets/register', 'wpb_ea_add_elementor_widgets');
 
-if ( ! function_exists( 'wpb_ea_add_elementor_widgets' ) ) {
+if (! function_exists('wpb_ea_add_elementor_widgets')) {
 
-	function wpb_ea_add_elementor_widgets( $widgets_manager ) {
+	function wpb_ea_add_elementor_widgets($widgets_manager)
+	{
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'content_box', 'on' ) ) {
-			wpb_ea_get_template( 'content_box.php' );
-			$widgets_manager->register( new WPB_EA_Widget_Content_Box() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'content_box', 'on')) {
+			wpb_ea_get_template('content_box.php');
+			$widgets_manager->register(new WPB_EA_Widget_Content_Box());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'counter', 'on' ) ) {
-			wpb_ea_get_template( 'counter.php' );
-			$widgets_manager->register( new WPB_EA_CounterUp() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'counter', 'on')) {
+			wpb_ea_get_template('counter.php');
+			$widgets_manager->register(new WPB_EA_CounterUp());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'fancy_list', 'on' ) ) {
-			wpb_ea_get_template( 'fancy_list.php' );
-			$widgets_manager->register( new WPB_EA_Fancy_List() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'fancy_list', 'on')) {
+			wpb_ea_get_template('fancy_list.php');
+			$widgets_manager->register(new WPB_EA_Fancy_List());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'image_gallery', 'on' ) ) {
-			wpb_ea_get_template( 'image_gallery.php' );
-			$widgets_manager->register( new WPB_EA_Widget_Image_Gallery() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'image_gallery', 'on')) {
+			wpb_ea_get_template('image_gallery.php');
+			$widgets_manager->register(new WPB_EA_Widget_Image_Gallery());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'logo_slider', 'on' ) ) {
-			wpb_ea_get_template( 'logo_slider.php' );
-			$widgets_manager->register( new WPB_EA_Widget_Logo_Slider() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'logo_slider', 'on')) {
+			wpb_ea_get_template('logo_slider.php');
+			$widgets_manager->register(new WPB_EA_Widget_Logo_Slider());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'news_ticker', 'on' ) ) {
-			wpb_ea_get_template( 'news_ticker.php' );
-			$widgets_manager->register( new WPB_EA_News_Ticker_Widget() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'news_ticker', 'on')) {
+			wpb_ea_get_template('news_ticker.php');
+			$widgets_manager->register(new WPB_EA_News_Ticker_Widget());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'post_grid_slider', 'on' ) ) {
-			wpb_ea_get_template( 'post_grid_slider.php' );
-			$widgets_manager->register( new WPB_EA_Post_Grid_Slider() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'post_grid_slider', 'on')) {
+			wpb_ea_get_template('post_grid_slider.php');
+			$widgets_manager->register(new WPB_EA_Post_Grid_Slider());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'pricing_tables', 'on' ) ) {
-			wpb_ea_get_template( 'pricing_tables.php' );
-			$widgets_manager->register( new WPB_EA_Widget_Pricing_Table() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'pricing_tables', 'on')) {
+			wpb_ea_get_template('pricing_tables.php');
+			$widgets_manager->register(new WPB_EA_Widget_Pricing_Table());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'service_box', 'on' ) ) {
-			wpb_ea_get_template( 'service_box.php' );
-			$widgets_manager->register( new WPB_EA_Widget_Service_Box() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'service_box', 'on')) {
+			wpb_ea_get_template('service_box.php');
+			$widgets_manager->register(new WPB_EA_Widget_Service_Box());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'slider', 'on' ) ) {
-			wpb_ea_get_template( 'slider.php' );
-			$widgets_manager->register( new WPB_EA_Widget_Slider() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'slider', 'on')) {
+			wpb_ea_get_template('slider.php');
+			$widgets_manager->register(new WPB_EA_Widget_Slider());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'team_members', 'on' ) ) {
-			wpb_ea_get_template( 'team_members.php' );
-			$widgets_manager->register( new WPB_EA_Widget_Team_Member() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'team_members', 'on')) {
+			wpb_ea_get_template('team_members.php');
+			$widgets_manager->register(new WPB_EA_Widget_Team_Member());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'testimonials', 'on' ) ) {
-			wpb_ea_get_template( 'testimonials.php' );
-			$widgets_manager->register( new WPB_EA_Widget_Testimonial() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'testimonials', 'on')) {
+			wpb_ea_get_template('testimonials.php');
+			$widgets_manager->register(new WPB_EA_Widget_Testimonial());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'video_popup', 'on' ) ) {
-			wpb_ea_get_template( 'video_popup.php' );
-			$widgets_manager->register( new WPB_EA_Video_PopUp() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'video_popup', 'on')) {
+			wpb_ea_get_template('video_popup.php');
+			$widgets_manager->register(new WPB_EA_Video_PopUp());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'timeline', 'on' ) ) {
-			wpb_ea_get_template( 'timeline.php' );
-			$widgets_manager->register( new WPB_EA_Widget_Content_Timeline() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'timeline', 'on')) {
+			wpb_ea_get_template('timeline.php');
+			$widgets_manager->register(new WPB_EA_Widget_Content_Timeline());
 		}
 
-		if ( wpb_ea_enable_addons( WPB_EA_PREFIX . 'videos_grid', 'on' ) ) {
-			wpb_ea_get_template( 'videos_grid.php' );
-			$widgets_manager->register( new WPB_EA_Videos_Grid() );
+		if (wpb_ea_enable_addons(WPB_EA_PREFIX . 'videos_grid', 'on')) {
+			wpb_ea_get_template('videos_grid.php');
+			$widgets_manager->register(new WPB_EA_Videos_Grid());
 		}
 	}
 }
@@ -306,48 +319,50 @@ if ( ! function_exists( 'wpb_ea_add_elementor_widgets' ) ) {
 /**
  * Getting gallery categories array
  */
-function wpb_ea_array_flatten( $categories ) {
-	if ( ! is_array( $categories ) ) {
+function wpb_ea_array_flatten($categories)
+{
+	if (! is_array($categories)) {
 		return false;
 	}
 
 	$result = array();
 
-	foreach ( $categories as $key => $value ) {
-		if ( is_array( $value ) ) {
-			$result = array_merge( $result, wpb_ea_array_flatten( $value ) );
+	foreach ($categories as $key => $value) {
+		if (is_array($value)) {
+			$result = array_merge($result, wpb_ea_array_flatten($value));
 		} else {
-			$result[ $key ] = $value;
+			$result[$key] = $value;
 		}
 	}
 
 	return $result;
 }
 
-function wpb_ea_gallery_categories( $gallery_items ) {
+function wpb_ea_gallery_categories($gallery_items)
+{
 
-	if ( ! is_array( $gallery_items ) ) {
+	if (! is_array($gallery_items)) {
 		return false;
 	}
 
 	$gallery_category_names       = array();
 	$gallery_category_names_final = array();
 
-	if ( is_array( $gallery_items ) ) {
+	if (is_array($gallery_items)) {
 
-		foreach ( $gallery_items as $gallery_item ) :
+		foreach ($gallery_items as $gallery_item) :
 			$gallery_category_names[] = $gallery_item['gallery_category_name'];
 		endforeach;
 
-		if ( is_array( $gallery_category_names ) && ! empty( $gallery_category_names ) ) {
-			foreach ( $gallery_category_names as $gallery_category_name ) {
-				$gallery_category_names_final[] = explode( ',', $gallery_category_name );
+		if (is_array($gallery_category_names) && ! empty($gallery_category_names)) {
+			foreach ($gallery_category_names as $gallery_category_name) {
+				$gallery_category_names_final[] = explode(',', $gallery_category_name);
 			}
 		}
 
-		if ( is_array( $gallery_category_names_final ) && ! empty( $gallery_category_names_final ) && function_exists( 'wpb_ea_array_flatten' ) ) {
-			$gallery_category_names_final = wpb_ea_array_flatten( $gallery_category_names_final );
-			return array_unique( array_filter( $gallery_category_names_final ) );
+		if (is_array($gallery_category_names_final) && ! empty($gallery_category_names_final) && function_exists('wpb_ea_array_flatten')) {
+			$gallery_category_names_final = wpb_ea_array_flatten($gallery_category_names_final);
+			return array_unique(array_filter($gallery_category_names_final));
 		}
 	}
 }
@@ -355,31 +370,33 @@ function wpb_ea_gallery_categories( $gallery_items ) {
 /**
  * Gallery Item category classes
  */
-function wpb_ea_gallery_item_category_classes( $gallery_classes, $id ) {
+function wpb_ea_gallery_item_category_classes($gallery_classes, $id)
+{
 
-	if ( ! ( $gallery_classes ) ) {
+	if (! ($gallery_classes)) {
 		return false;
 	}
 
 	$gallery_cat_classes = array();
-	$gallery_classes     = explode( ',', $gallery_classes );
+	$gallery_classes     = explode(',', $gallery_classes);
 
-	if ( is_array( $gallery_classes ) && ! empty( $gallery_classes ) ) {
-		foreach ( $gallery_classes as $gallery_class ) {
-			$gallery_cat_classes[] = sanitize_title( $gallery_class ) . '-' . $id;
+	if (is_array($gallery_classes) && ! empty($gallery_classes)) {
+		foreach ($gallery_classes as $gallery_class) {
+			$gallery_cat_classes[] = sanitize_title($gallery_class) . '-' . $id;
 		}
 	}
 
-	return implode( ' ', $gallery_cat_classes );
+	return implode(' ', $gallery_cat_classes);
 }
 
 /**
  * Body Class
  */
-add_filter( 'body_class', 'wpb_ea_body_class' );
+add_filter('body_class', 'wpb_ea_body_class');
 
-function wpb_ea_body_class( $classes ) {
-	if ( ! \Elementor\Plugin::$instance->preview->is_preview_mode() ) {
+function wpb_ea_body_class($classes)
+{
+	if (! \Elementor\Plugin::$instance->preview->is_preview_mode()) {
 		$classes[] = 'wpb-elementor-addons';
 	}
 	return $classes;
@@ -389,12 +406,13 @@ function wpb_ea_body_class( $classes ) {
  * Add Custom Icons to the New Icons Control
  */
 
-add_filter( 'elementor/icons_manager/additional_tabs', 'wpb_ea_add_custom_icons_tab' );
+add_filter('elementor/icons_manager/additional_tabs', 'wpb_ea_add_custom_icons_tab');
 
-function wpb_ea_add_custom_icons_tab( $tabs = array() ) {
-	$load_line_icons = apply_filters( 'wpb_ea_load_line_icons', 'on' );
+function wpb_ea_add_custom_icons_tab($tabs = array())
+{
+	$load_line_icons = apply_filters('wpb_ea_load_line_icons', 'on');
 
-	if ( $load_line_icons == 'on' ) {
+	if ($load_line_icons == 'on') {
 		// Line Icons
 		$lineicons = array(
 			'add-file',
@@ -861,7 +879,7 @@ function wpb_ea_add_custom_icons_tab( $tabs = array() ) {
 
 		$tabs['lineicons'] = array(
 			'name'          => 'lineicons',
-			'label'         => esc_html__( 'Line Icons', 'wpb-elementor-addons' ),
+			'label'         => esc_html__('Line Icons', 'wpb-elementor-addons'),
 			'labelIcon'     => 'lni-user',
 			'prefix'        => 'lni-',
 			'displayPrefix' => 'lni',

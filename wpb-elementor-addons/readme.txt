@@ -1,35 +1,26 @@
-=== WPB Elementor Addons ===
+=== WPB Addons for Elementor - News Ticker, Timeline, Team, Services, Testimonials, and Much More ===
 Author URI: https://wpbean.com/
 Plugin URI: https://wpbean.com/
 Contributors: wpbean, imranwpb
 Tags: elementor, elementor addons, elementor widget, addons, elementor elements
 Requires at least: 5.0
-Tested up to: 6.8.1
-Stable tag: 1.6
-Requires PHP: 7.3.5
+Tested up to: 6.9
+Stable tag: 1.7
+Requires PHP: 8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WPB Elementor Addons has News Ticker, Content Timeline, Gallery, Video Popup, Team Members, Pricing Table, and Post Grid with huge styling option
+A powerful collection of custom Elementor widgets and extensions to build advanced layouts with ease.
 
 == Description ==
 
-<a href="https://wordpress.org/plugins/elementor/" rel="nofollow">Elementor</a> is the number one page builder for WordPress currently available now in the market. It has a super easy user interface, anyone can design complex web pages without knowing any code.
+<strong>WPB Elementor Addons</strong> is a lightweight and performance-focused WordPress plugin that extends the Elementor page builder with a collection of powerful custom widgets and design enhancements. It is designed to help website owners, designers, and developers build modern, visually appealing layouts faster—without writing custom code.
 
-WPB Elementor Addons can add a variety of high-quality addons with a vast array of customization options to help you take your website to the next level. It is among the top Elementor add-on packs. All of the accessories have a high-end, modern look.
+This Elementor addons plugin seamlessly integrates with the native Elementor editor, adding new widgets and styling options that work naturally within Elementor’s workflow. Each widget is built with flexibility and usability in mind, allowing you to create advanced layouts, interactive sections, and dynamic content blocks while maintaining full control over design and responsiveness.
 
-You can build any professional websites with this addon pack. We have elements for any type of business, corporate or personal websites. The team, services, pricing table addon allow you to integrate it for any type of business websites. 
-
-This addons pack works with any standard free or premium WordPress themes. No matter you are using a free theme, our Best Elementor Addons will always make you feel like a premium theme.
-
+<strong>WPB Elementor Addons</strong> is optimized for speed, compatibility, and clean output. It works smoothly with all modern WordPress themes and follows WordPress and Elementor coding standards to ensure stability and long-term reliability. Whether you’re building landing pages, business websites, portfolios, or WooCommerce stores, this plugin enhances Elementor’s capabilities while keeping your site fast and user-friendly.
 
 >[DEMO](https://elementorkit.wpbean.com/)  |  [Support](https://wpbean.freshdesk.com/) |  [Documentation](http://docs.wpbean.com/docs/wpb-ea-elementor-addons/) |  [Video Tutorials](https://www.youtube.com/playlist?list=PLHcSqTwq3hc1hvQbzl-1_I1xTd8OltaDI)
-
-### 👋 Need expert WordPress & WooCommerce development help?
-I’m currently available for hire — WordPress and WooCommerce development, custom features, bug fixing, speed optimization, performance tuning, SEO improvements, and more.
-With over 10 years of experience building high-quality WordPress solutions, I can help you take your website to the next level. 
-[__Contact me here →__](https://wpbean.com/web-development-services/?utm_source=WordPress&utm_medium=desc-link&utm_campaign=available-for-hire&utm_content=WPB+Elementor+Addons)
-
 
 ### Available Addons
 
@@ -83,7 +74,7 @@ We test this plugin with so many free and premium themes. It should work with an
 
 == Screenshots ==
 
-1. WPB Elementor Addons.
+1. WPB Addons for Elementor.
 2. CounterUp.
 3. Post Slider.
 4. Filterable Image Gallery.
@@ -101,6 +92,9 @@ We test this plugin with so many free and premium themes. It should work with an
 
 
 == Changelog ==
+
+= Version 1.7 =
+* Tested with the Plugin Check (PCP) plugin.
 
 = Version 1.6 =
 * Code improvement.
