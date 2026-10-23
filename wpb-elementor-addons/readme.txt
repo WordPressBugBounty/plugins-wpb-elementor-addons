@@ -1,10 +1,10 @@
-=== WPB Addons for Elementor - News Ticker, Timeline, Team, Services, Testimonials, and Much More ===
+=== WPB Addons for Elementor – News Ticker, Timeline, Team & More Widgets ===
 Author URI: https://wpbean.com/
 Plugin URI: https://wpbean.com/
 Contributors: wpbean, imranwpb
 Tags: elementor, elementor addons, elementor widget, addons, elementor elements
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 7.1.3
 Stable tag: 1.7
 Requires PHP: 8.3
 License: GPLv2 or later
